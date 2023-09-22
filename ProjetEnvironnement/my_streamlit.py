@@ -1,9 +1,12 @@
+#Import des bibliotheques nécessaires 
 import streamlit as st
 import requests
 import matplotlib.pyplot as plt
 import pandas as pd
 
-# Fonction pour récupérer les données depuis l'API Flask
+#On definit une fonction get_data()  qui envoie une requête GET à l'API FastAPI 
+#pour récupérer les données environnementales. On peut également traiter  les erreurs potentielles.
+
 def get_data():
     try:
         # Remplacez l'adresse IP ci-dessous par l'adresse IP de votre machine hôte
@@ -14,7 +17,9 @@ def get_data():
         st.error(f"Une erreur s'est produite lors de la récupération des données : {e}")
         return []
 
-# Fonction pour récupérer les données par région depuis l'API Flask
+#On définit une fonction get_unique_regions(data)
+#qui prend en entrée les données environnementales et renvoie une liste triée des régions uniques contenues dans les données.
+
 def get_data_by_region(region):
     try:
         # Remplacez l'adresse IP ci-dessous par l'adresse IP de votre machine hôte
