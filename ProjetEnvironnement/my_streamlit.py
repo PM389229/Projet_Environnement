@@ -9,7 +9,6 @@ import pandas as pd
 
 def get_data():
     try:
-        # Remplacez l'adresse IP ci-dessous par l'adresse IP de votre machine hôte
         response = requests.get("http://localhost:8000/api/data")
         data = response.json()
         return data
@@ -22,7 +21,6 @@ def get_data():
 
 def get_data_by_region(region):
     try:
-        # Remplacez l'adresse IP ci-dessous par l'adresse IP de votre machine hôte
         response = requests.get(f"http://localhost:8000/api/data/{region}")
         data = response.json()
         return data
@@ -57,11 +55,11 @@ def main():
         plt.xlabel("Année")
         plt.ylabel("Émissions de CO2 (MtCO2)")
         st.pyplot(fig)
-        # Ajoutez d'autres graphiques selon vos besoins
+
     else:
         st.warning("Aucune donnée n'a été récupérée.")
 
-    # Obtenez la liste unique de toutes les régions
+    #liste unique de toutes les régions
     regions = get_unique_regions(data)
 
     # Dans votre application Streamlit, vous pouvez ajouter un menu déroulant pour sélectionner la région
@@ -71,13 +69,12 @@ def main():
         region_data = get_data_by_region(region_input)
         
         if region_data:
-            # Remplacez 'n.a.' par NaN dans les données JSON
             for item in region_data:
-                if isinstance(item, dict):  # Vérifiez si l'élément est un dictionnaire
+                if isinstance(item, dict):  # Pour Vérifier si l'élément est un dictionnaire
                     for key, value in item.items():
                         if value == 'n.a.':
                             item[key] = float('nan')
-            # Créez un DataFrame pandas à partir des données
+            # DataFrame pandas créé à partir des données
             df_region = pd.DataFrame(region_data)
             st.write("Données pour la région :", region_input)
             st.write(df_region)
