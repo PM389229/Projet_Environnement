@@ -1,11 +1,11 @@
-#Import des bibliotheques nécessaires 
 import streamlit as st
 import requests
 import matplotlib.pyplot as plt
 import pandas as pd
 
-#On definit une fonction get_data()  qui envoie une requête GET à l'API FastAPI 
-#pour récupérer les données environnementales. On peut également traiter  les erreurs potentielles.
+# On definit une fonction get_data()  qui envoie une requête GET à l'API FastAPI a l'adresse 
+# http://localhost:8000/api/data pour récupérer les données environnementales. 
+ #On peut également traiter  les erreurs potentielles.
 
 def get_data():
     try:
@@ -16,8 +16,11 @@ def get_data():
         st.error(f"Une erreur s'est produite lors de la récupération des données : {e}")
         return []
 
-#On définit une fonction get_unique_regions(data)
-#qui prend en entrée les données environnementales et renvoie une liste triée des régions uniques contenues dans les données.
+
+# Cette fonction prend en entrée une région et envoie une requête GET à l'API FastAPI 
+# avec la région spécifiée dans l'URL pour récupérer les données environnementales spécifiques à cette région.
+# Elle renvoie les données sous forme de liste de dictionnaires si la requête est réussie, sinon une liste vide
+
 
 def get_data_by_region(region):
     try:
@@ -28,7 +31,12 @@ def get_data_by_region(region):
         st.error(f"Une erreur s'est produite lors de la récupération des données : {e}")
         return []
 
-# Fonction pour récupérer la liste unique de toutes les régions depuis les données
+
+
+# On définit ici une fonction get_unique_regions(data)
+# qui prend en entrée les données environnementales et 
+# renvoie une liste triée des régions uniques contenues dans les données.
+
 def get_unique_regions(data):
     regions = set()
     for item in data:
@@ -62,7 +70,7 @@ def main():
     #liste unique de toutes les régions
     regions = get_unique_regions(data)
 
-    # Dans votre application Streamlit, vous pouvez ajouter un menu déroulant pour sélectionner la région
+    # Dans Streamlit, on ajouteé un menu déroulant pour sélectionner la région
     region_input = st.selectbox("Sélectionnez une région :", regions)
 
     if region_input:
@@ -70,7 +78,7 @@ def main():
         
         if region_data:
             for item in region_data:
-                if isinstance(item, dict):  # Pour Vérifier si l'élément est un dictionnaire
+                if isinstance(item, dict):  # Vérification de  si l'élément est un dictionnaire ou non
                     for key, value in item.items():
                         if value == 'n.a.':
                             item[key] = float('nan')
