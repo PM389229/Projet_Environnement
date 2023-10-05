@@ -47,7 +47,7 @@ def get_unique_regions(data):
 # Page d'accueil de l'application Streamlit
 def main():
     st.title("Visualisation de données environnementales")
-    # Récupérer les données depuis l'API Flask
+    # Récupérer les données depuis l'API 
     data = get_data()
     if data:
         # Convertir les données en DataFrame pandas

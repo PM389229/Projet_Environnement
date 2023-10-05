@@ -1,0 +1,52 @@
+Fonctionnement du projet :
+
+J'ai deux serveurs , 
+
+Le premier est le serveur Uvicorn(API) et celui de streamlit pour l'affichage.
+
+Il y a  deux conteneurs mongodb et mongo-express , mongo-express doit etre lancé après mongodb .
+Docker est intégré a ubuntu , ce n'est pas la version complete.
+
+Commandes dans Ubuntu :
+
+docker ps -a: verifier que les conteneurs nécessaires soient lancés.
+
+
+
+
+                    Contenu du projet
+
+Il y a deux fichiers principaux dans le projet : app.py, et my_streamlit.py.
+
+app.py est le fichier principal de l'API FastAPI qui gère les endpoints pour récupérer des données depuis une base de données MongoDB.
+
+my_streamlit.py est le fichier principal de l'application Streamlit qui récupère les données de l'API FastAPI 
+et les affiche sous forme de tableau et de graphique.
+
+
+
+Exécution de l'API FastAPI :
+
+dépendances du projet :
+
+fastapi==0.68.1
+uvicorn==0.15.0
+pymongo==3.12.0
+Ouvrez un terminal, accédez au répertoire contenant app.py, exécutez l'API FastAPI avec la commande suivante :
+
+commande pour lancer le serveur Uvicorn:
+uvicorn app:app --reload
+uvicorn app:app --port 8001 --reload
+
+Ca va lancer l'API FastAPI sur http://localhost:8000. 
+
+
+
+
+
+
+Exécution de l'application Streamlit :
+
+
+streamlit run my_streamlit.py
+

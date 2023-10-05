@@ -6,7 +6,7 @@ from pymongo import MongoClient
 
 app = FastAPI()
 
-#On crée une connecion à la base de données mongo avec pymongo
+#On crée une connexion à la base de données mongo avec pymongo
 client = MongoClient("mongodb://root:example@localhost:27017/")
 db = client["Environnement"]
 collection = db["Environnement_c"]
@@ -31,5 +31,5 @@ async def get_data_by_region(region: str):
     return data
 
 
-#Pour résumer C'est la structure générale de mon application FastAPI 
+#C'est la structure générale de mon application FastAPI 
 #qui permet de récupérer des données depuis la base de données MongoDB en utilisant des endpoints RESTful.
